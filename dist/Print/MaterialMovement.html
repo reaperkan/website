@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/grids.css">
+    <style>
+      p{
+        font-weight: 600;
+      }
+      *{
+        margin: 0;
+      }
+      .table-body{
+        height: 30mm;
+        text-align: justify;
+      }
+      .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#0C9;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      @media print{
+        #save{
+          display: none;
+        }
+      }
+    </style>
+</head>
+    <body class="A4 landscape" id='body'>        
+        <section class="sheet padding-10mm" id="page_1">
+            <div class="row">
+                <div class="col-3" style="box-shadow: none;"><h3>G.D. Electroplating Works</h3></div>
+                <div class="col-6" style="box-shadow: none;"><center><h3>To: <span id="partyName"></span> </h3></center></div>
+                <div class="col-3" style="box-shadow: none;">&nbsp;</div>
+            </div>
+
+            <div class="row" style="margin-top: 2mm;">
+                <div class="col-6" style="box-shadow: none;">
+                    <h5>Report Of Materials: <span id="desc1"></span> </h5>
+                </div>
+                <div class="col-2" style="box-shadow: none;">
+                    <h5>Item Code: <span id="itemCode"></span> </h5>
+                </div>
+                <div class="col-2" style="box-shadow: none;">
+                    <h5>Order No.: <span id="orderNo"></span></h5>
+                </div>
+                <div class="col-2" style="box-shadow: none;">
+                    <h5>Date: <span id="orderDate"></span>  </h5>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 2mm;">
+                <div class="col-8" style="box-shadow: none;">
+                    <h5>Date: <span id="today"></span></h5>
+                </div>
+                <div class="col-4" style="box-shadow: none;">
+                    <h5>Order Qty: <span id="orderQty"></span> </h5>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 4mm; border: .5mm solid black; text-align: center;">
+                <div class="col-8" style="box-shadow: none; font-size: smaller; border-right: .5mm solid black;">
+                    <div class="row">
+                        <div class="col-1" style="box-shadow: none;">
+                            G.P. No.
+                        </div>
+                        <div class="col-1" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-2" style="box-shadow: none;">
+                            I-Note No.
+                        </div>
+                        <div class="col-1" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            Voucher No.
+                        </div>
+                        <div class="col-1" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            ANNEX II
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            R F R Qty
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            Qty.Received
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4" style="box-shadow: none; font-size: smaller;">
+                    <div class="row">
+                        <div class="col-2Half" style="box-shadow: none;">
+                            Challan
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-2Half" style="box-shadow: none;">
+                            Qty Issued
+                        </div>
+                        <div class="col-2Half" style="box-shadow: none;">
+                            Qty Rectify
+                        </div>
+                        <div class="col-3" style="box-shadow: none;">
+                            Qty Accepted
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="text-align: center; white-space: nowrap;">
+                <div  id="infoBox_1" class="col-8" style="box-shadow: none; font-size: x-small; border-right: .5mm solid black; height: 15cm;">
+                    <div class="row" id="infoNode_1">
+                        <div class="col-1" style="box-shadow: none; ">
+                            G.P. No.
+                        </div>
+                        <div class="col-1" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-2" style="box-shadow: none;">
+                            I-Note No.
+                        </div>
+                        <div class="col-1" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            Voucher No.
+                        </div>
+                        <div class="col-1" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            ANNEX II
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            R F R Qty
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            Qty.Received
+                        </div>
+                    </div>
+                </div>
+                <div id='outBox_1' class="col-4" style="box-shadow: none; font-size: x-small; height: 15cm;">
+                    <div class="row" id="outNode_1">
+                        <div class="col-2Half" style="box-shadow: none;">
+                            Challan
+                        </div>
+                        <div class="col-1Half" style="box-shadow: none;">
+                            Date
+                        </div>
+                        <div class="col-2Half" style="box-shadow: none;">
+                            Qty Issued
+                        </div>
+                        <div class="col-2Half" style="box-shadow: none;">
+                            Qty Rectify
+                        </div>
+                        <div class="col-3" style="box-shadow: none;">
+                            Qty Accepted
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="border: .5mm solid black;">
+                <div class="col-8" style="box-shadow: none; text-align: center; ">
+                    <div class="col-9" style="box-shadow: none;">&nbsp;</div>
+                    <div class="col-1Half" style="box-shadow: none;" id='rfrQty'>0.00</div>
+                    <div class="col-1Half" style="box-shadow: none;" id='totalInQty'>0.00</div>
+                </div>
+                <div class="col-4" style="box-shadow: none; text-align: center;">
+                    <div class="row">
+                        <div class="col-4" style="box-shadow: none;">
+                            &nbsp;
+                        </div>
+                        <div class="col-2Half" style="box-shadow: none;" id='totalOutQty'>
+                            Issue Qty
+                        </div>
+                        <div class="col-2Half" style="box-shadow: none;" id='rejQty'>
+                            000000
+                        </div>
+                        <div class="col-3" style="box-shadow: none;" id='totalAcceptedQty'>
+                            Total Qty
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer><center>[1]</center></footer>
+        </section>
+
+        <a id="save" class="float">
+            <img src="../imgs/save.png" height="24" style="margin-top:18px;">
+        </a>
+        <script>
+            let saveButton=document.getElementById('save');
+            let info=document.getElementById("infoNode_1").cloneNode(true);
+            let outNode=document.getElementById('outNode_1').cloneNode(true);
+            let boxInfo=document.getElementById("infoBox_1");
+            let outBox=document.getElementById('outBox_1');
+            let page=document.getElementById("page_1").cloneNode(true);
+            document.getElementById("infoNode_1").remove();
+            document.getElementById('outNode_1').remove();
+            let limit=47;
+            let newData=null;
+            let rfrQty=0;
+            let totalInQty=0;
+            let totalOutQty=0;
+            let totalRejQty=0;
+            let totalAcceptedQty=0;
+            let chalanInSet=new Set();
+            function init(data){
+                newData=data;
+                addHeaderDetails(data.name,data.order);
+                addTable();
+                addTotal();
+            }
+            saveButton.addEventListener('click',()=>{
+                window.print();
+            });
+            function addHeaderDetails(partyName,orderDetail){
+                document.getElementById('partyName').innerText=partyName;
+                document.getElementById('desc1').innerText=orderDetail.desc1;
+                document.getElementById('orderQty').innerText=orderDetail.qty;
+                document.getElementById('itemCode').innerText=orderDetail.itemCode;
+                document.getElementById('orderNo').innerText=orderDetail.orderNumber;
+                document.getElementById('today').innerText=properDate(new Date());
+                document.getElementById('orderDate').innerText=properDate(orderDetail.orderDate);
+            }
+            function addTotal(){
+                document.getElementById('rfrQty').innerText=Number(rfrQty).toFixed(2);
+                document.getElementById('totalInQty').innerText=Number(totalInQty).toFixed(2);
+                document.getElementById('totalOutQty').innerText=Number(totalOutQty).toFixed(2);
+                document.getElementById('rejQty').innerText=Number(totalRejQty).toFixed(2);
+                document.getElementById('totalAcceptedQty').innerText=Number(totalAcceptedQty).toFixed(2);
+            }
+            function addInfo(infoBox,chalanInMaster,chalanInDetail){
+                let check=chalanInSet.has(chalanInMaster.chalanId);
+                if(check == false){
+                    chalanInSet.add(chalanInMaster.chalanId);
+                    infoBox.children[0].innerHTML=addText(chalanInMaster.gpNo);
+                    infoBox.children[1].innerHTML=addText(properDate(chalanInMaster.gpDate));
+                    infoBox.children[2].innerHTML=addText(chalanInMaster.iNoteNo);
+                    infoBox.children[3].innerHTML=addText(properDate(chalanInMaster.iNoteDate));
+                    infoBox.children[4].innerHTML=addText(chalanInMaster.issueNo);
+                    infoBox.children[5].innerHTML=addText(properDate(chalanInMaster.issueDate));
+                    infoBox.children[6].innerHTML=addText(chalanInMaster.ANX2);
+                    if(chalanInMaster.returnTag){
+                        infoBox.children[7].innerHTML=addText(Number(chalanInDetail.qty).toFixed(2));
+                        infoBox.children[8].innerHTML=addText(Number(0).toFixed(2));
+                        rfrQty+=chalanInDetail.qty;
+                    }else{
+                        infoBox.children[7].innerHTML=addText(Number(0).toFixed(2));
+                        infoBox.children[8].innerHTML=addText(Number(chalanInDetail.qty).toFixed(2));
+                        totalInQty+=chalanInDetail.qty;
+                    }
+                }else{
+                    infoBox.children[0].innerHTML='&nbsp;';
+                    infoBox.children[1].innerHTML='&nbsp;';
+                    infoBox.children[2].innerHTML='&nbsp;';
+                    infoBox.children[3].innerHTML='&nbsp;';
+                    infoBox.children[4].innerHTML='&nbsp;';
+                    infoBox.children[5].innerHTML='&nbsp;';
+                    infoBox.children[6].innerHTML='&nbsp;';
+                    infoBox.children[7].innerHTML='0.00';
+                    infoBox.children[8].innerHTML='0.00';
+                }
+                return infoBox;
+            }
+            function addOutInfo(outNode,chalanOutDetail,isOut=true){
+                if(isOut){
+                    outNode.children[0].innerHTML=addText(chalanOutDetail.chalanOutID);
+                    outNode.children[1].innerHTML=addText(properDate(chalanOutDetail.chalanOutDate));
+                    outNode.children[2].innerHTML=addText(Number(chalanOutDetail.qty).toFixed(2));
+                    outNode.children[3].innerHTML=addText(Number(chalanOutDetail.rejQty).toFixed(2));
+                    outNode.children[4].innerHTML=addText(Number(chalanOutDetail.qty-chalanOutDetail.rejQty).toFixed(2));
+                    totalOutQty+=Number(chalanOutDetail.qty);
+                    totalRejQty+=Number(chalanOutDetail.rejQty);
+                    totalAcceptedQty+=Number(chalanOutDetail.qty-chalanOutDetail.rejQty);
+                }else{
+                    outNode.children[0].innerHTML='&nbsp;';
+                    outNode.children[1].innerHTML='&nbsp;';
+                    outNode.children[2].innerHTML='0.00';
+                    outNode.children[3].innerHTML='0.00';
+                    outNode.children[4].innerHTML='0.00';
+                }
+                return outNode;
+            }
+            function addText(data){
+                return (data==null || data.length==0)?"&nbsp;":data;
+            }
+            function properDate(date){
+                if(date != null)
+                    return new Date(date).toLocaleDateString('en-GB');
+                return null;
+            }
+            function addTable(){
+                for(let i=1;i<=newData.data.length+newData.notOut.length;i++){
+                    //console.log(boxInfo);
+                    info.id="infoNode_"+i;
+                    outNode.id="outNode_"+i;
+                    if(i <= newData.data.length){
+                        console.log(newData.data[i-1]);
+                        info=addInfo(info,newData.data[i-1].chalanInMaster,newData.data[i-1].chalanInDetail);
+                        outNode=addOutInfo(outNode,newData.data[i-1]);
+                    }else{
+                        let newIndex=i-newData.data.length-1;
+                        info=addInfo(info,newData.notOut[newIndex].master,newData.notOut[newIndex].detail);
+                        outNode=addOutInfo(outNode,null,false);
+                    }
+                    boxInfo.appendChild(info);
+                    outBox.appendChild(outNode);
+                    outNode=outNode.cloneNode(true);
+                    info=info.cloneNode(true);
+                    if(i>=limit){
+                        let prevPage=document.getElementById('page_'+(i/47));
+                        console.log(prevPage);
+                        prevPage.children[prevPage.children.length-2].innerHTML='&nbsp;';
+                        limit+=47;
+                        page.id="page_"+((i/47)+1);
+                        document.body.appendChild(page);
+                        page=page.cloneNode(true);
+                        let nextPage=document.getElementById('page_'+((i/47)+1));
+                        nextPage.children[nextPage.children.length-1].innerHTML='<center>['+((i/47)+1)+']</center>';
+                        let j=0;
+                        while(j<3){
+                            nextPage.children[0].remove();
+                            j++;
+                        }
+                        nextPage.children[1].firstElementChild.id="infoBox_"+((i/47)+1);
+                        nextPage.children[1].children[1].id="outBox_"+((i/47)+1);
+                        nextPage.children[1].firstElementChild.firstElementChild.remove();
+                        nextPage.children[1].children[1].firstElementChild.remove();
+                        boxInfo=document.getElementById("infoBox_"+((i/47)+1));
+                        outBox=document.getElementById("outBox_"+((i/47)+1));
+                    }
+                }
+            }
+            init(JSON.parse(window.localStorage.getItem('printData'))); 
+        </script>
+    </body>
+</html>

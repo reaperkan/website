@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/grids.css">
+    <style>
+        p{
+        font-weight: 400;
+        }
+        .fill-in{
+            font-size: 3.5mm;
+            text-align: center;
+        }
+        .fill-in .row{
+            padding-top: 2.5mm;
+        }
+        .underlined{
+        border-bottom: .4mm solid black;
+        box-shadow: none;
+        }
+        .table{
+            font-size: 2.5mm;
+            text-align: center;        
+        }
+        .table [class*="col-"] {
+            height: 7.5mm;
+            box-shadow: 
+            .25mm 0 0 0 black, 
+            0 .25mm 0 0 black, 
+            .25mm .25mm 0 0 black,   /* Just to fix the corner */
+            .25mm 0 0 0 black inset, 
+            0 .25mm 0 0 black inset;
+        }   
+        *{
+            margin: 0;
+        }
+        .dotted{
+            font-size: 4mm; 
+            border-bottom: .4mm dotted black;
+        }
+        .float{
+            position:fixed;
+            width:60px;
+            height:60px;
+            bottom:40px;
+            right:40px;
+            background-color:#0C9;
+            color:#FFF;
+            border-radius:50px;
+            text-align:center;
+            box-shadow: 2px 2px 3px #999;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media print{
+            #save{
+            display: none;
+            }
+        }
+    </style>
+</head>
+<body class="A4" id='body'>
+    <section class="sheet padding-10mm">
+        <div class="row">
+            <div class="col-6" style="box-shadow: none;">
+                <p><strong>Bill No.:</strong> <span id="billNo"></span></p>
+            </div>
+            <div class="col-6" style='text-align: right;box-shadow: none;'>
+                <p><strong>I.A.F.A. - 68 (Revised)</strong></p>
+            </div>
+        </div>
+
+        <center><h3 style="margin: 1mm;">CONTRACTORS BILL</h3></center>
+
+        <div class="fill-in">
+            <div class="row">
+                <div class="col-2" style="box-shadow: none; text-align: left;">Head of Accounts</div>
+                <div class="col-10 underlined">&nbsp;</div>
+            </div>
+    
+            <div class="row">
+                <div class="col-2Half" style="box-shadow: none; text-align: left;">Contract Agreement No.</div>
+                <div class="col-2Half underlined" id="orderNumber">&nbsp;</div>
+                <div class="col-1" style="box-shadow: none;">Dated</div>
+                <div class="col-1Half underlined"><span id="orderDate"></span></div>
+                <div class="col-2" style="box-shadow: none;">for the period from</div>
+                <div class="col-2Half underlined">&nbsp;</div>
+            </div>
+
+            <div class="row">
+                <div class="col-4" style="box-shadow: none;text-align: left;">Name of Contractor with full postsal address</div>
+                <div class="col-8 underlined">G.D. Electroplating Works    ,   P-78,Bee Hive Garden,Belgharia,Kol-56</div>
+            </div>
+        </div>
+
+        <div class="row table" style="padding-top: 5mm;">
+            <div class="col-1Half"><p style="padding: 1mm 0;">Supporting ChalanNo And Date</p></div>
+            <div class="col-1Half"><p style=" padding: 1mm 0;">Name Of Unit</p></div>
+            <div class="col-2Half"><p style=" padding: 1mm 0;">Description of articles supplied /service rendered</p></div>
+            <div class="col-3"><p style=" padding: 1mm 0;">Quantity or number accepted (to be shown in figures as well as in words</p></div>
+            <div class="col-1"><p style="padding: 1mm 0;">Rate(per)</p></div>
+            <div class="col-1Half"><p style="padding: 1mm 0;">Total Cost</p></div>
+            <div class="col-1"><p style="padding: 1mm 0;">Remarks</p></div>
+        </div>
+
+        <div class="row table">
+            <div class="col-1Half" style="height:60mm;">
+                <p id="chalanOutID" style="margin-top: 2mm;">Dad</p>
+            </div>
+            <div class="col-1Half" style="height:60mm;">
+                <p id="partyName" style="margin-top: 2mm;">Dad</p>
+                <p id="partyAddress" style="margin-top: 2mm;">Dad</p>
+            </div>
+            <div class="col-2Half" style="height:60mm;">
+                <p id="desc1" style="margin-top: 2mm;">Dad</p>
+                <p style="margin-top: 5mm;">ItemCode:<span id="itemCode"></span></p>
+                <p id="platingType" style="margin-top: 5mm;">Dad</p>
+            </div>
+            <div class="col-3" style="height:60mm;">
+                <p id="qty" style="margin-top: 2mm;">Dad</p>
+                <p id="qtyInWords" style="margin-top: 2mm;">Dad</p>
+                <div class="row" style="position: absolute; top: 85mm; text-align: center; padding-left: 2mm; font-size: small; width: 25%;">
+                    <h4>Add</h4>
+                    <p>Add CGST @ <span id="cgstPer"></span>%</p>
+                    <p>Add SGST @ <span id="sgstPer"></span>%</span></p>
+                    <p>Total GST:</p>
+                </div>
+            </div>
+            <div class="col-1" style="height:60mm;">
+                <p id="rate" style="margin-top: 2mm;">Dad</p>
+                <div class="row" style="position: absolute; top: 85mm; text-align: center; font-size: small; width: 7.5%;">
+                    <h4>&nbsp;</h4>
+                    <p><span id="cgstValue">1</span></p>
+                    <p style=" border-bottom: .35mm solid black;"><span  id="sgstValue">10000</span></p>
+                    <p style="margin-top: 10mm;">R. Off</p>
+                </div>
+            </div>
+            <div class="col-1Half" style="height:60mm;">
+                <p id="amount" style="margin-top: 2mm;">Dad</p>
+                <div class="row" style="position: absolute; top: 85mm; text-align: center; font-size: small; width: 11.5%;">
+                    <h4>&nbsp;</h4>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p style=" border-bottom: .35mm solid black;"><span id="totalGST">111</span></p>
+                    <p><span id="billValue"></span></p>
+                    <p style="margin-top: 2mm;"><span id="billRoundOff"></span></p>
+                </div>
+            </div>
+            <div class="col-1" style="height:60mm;"></div>
+        </div>
+
+        <div class="row" style=" position: absolute; bottom: 180mm; text-align: left; overflow: visible;">
+            <h4 style="display: inline; margin-left: 2mm;">PARTY GST NO. <span id="partyGST"></span> </h4>
+        </div>
+
+        <!--Sales Tax Certificated-->
+        <div class="row table">
+            <div class="col-7" style="height: 17cm; text-align: left;">
+                <p style="margin-top: 14mm; padding-left: 2mm;">Certified That:</p>
+                <center><h4 style="font-size: 3mm; margin-top: 4mm;">SALES TAX CERTIFICATE</h4></center>
+                <p style="margin-top: 5mm; padding-left: 2mm;">Certified that the goods on which Sales Tax has been charged have not been exempted
+                    under the Central Sales/States/Union Territory Tax Act or the Rules made thereunder
+                    and the amount charged on account of Sales Tax on these goods is not more than that 
+                    what is payable under the Provisions On the relevant Act or the Rules made thereunder.</p>
+                <p style="margin-top: 5mm; padding:0 2mm;">Certified further that (or our Branch or Agent)
+                    <span class="dotted">G D ELECTROPLATING WORKS &nbsp;</span>
+                    (address)<span class="dotted">P-78,BEE-HIVE GARDEN,BELGHARIA, KOL-700056. &nbsp; &nbsp; 
+                    </span>
+                    <span style="display: inline-block; width: 100%;" class="dotted">&nbsp; </span>
+                    are registered as dealers in the state of 
+                    <span class='dotted' style="display: inline-block; width: 6.7cm; text-align: center;">
+                        West Bengal&nbsp;&nbsp;
+                    </span>
+                    Under local Registration No.
+                    <span class='dotted' style="display: inline-block; width: 1cm; text-align: center;">
+                        
+                    </span>
+                    in the state of
+                    <span class='dotted' style="display: inline-block; text-align: center;">
+                        19662239113 Dt.01.04.2003&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    Under Central Registration No.
+                    <span class='dotted' style="display: inline-block; width: 6.7cm; text-align: center;">
+                        19662239210 Dt. 01.04.2003
+                    </span>
+                    for the purpose of Sales Tax.
+                </p>
+
+                <h5 style="font-size: 3mm; padding-left: 2mm;">GSTIN: 19AADFG7040F1ZK</h5>
+
+                <p style="margin-top: 3mm; padding-left: 2mm;">Seal of the Firm</p>
+                <p style="margin-top: 3mm; padding-left: 2mm;">Dated</p>
+
+                <p style="margin-top: 3mm; text-align: right; padding-right: 5mm;"><em> Signature of Contractor</em></p>
+                
+                <center><h4 style="font-size: 3mm; margin: 3mm 0;">CERTIFICATE FROM THE CONTRACTOR</h4></center>
+
+                <p style="margin-top: 3mm; padding:0 2mm;" >I have personally examined and verified and do hereby certify that the 
+                    goods in respect or which payment is being claimed have been actually 
+                    dispatched by me/us under R. R. No./B. L. No/Air Consignment No./Postal Receipt No.
+                    <span class='dotted' style="display: inline-block; width: 6cm; text-align: center;">
+                        &nbsp;
+                    </span>
+                    Dated 
+                    <span class='dotted' style="display: inline-block; width: 1.5cm; text-align: center;">
+                        &nbsp;
+                    </span>
+                </p>
+                <p style="margin-top: 1mm; padding:0 2mm;">Duly   drawn  in  favour  of  the  consignee  which  is  genuine  and mentioned in the bill 
+                    and that I hold myself personally responsible for the correctness of this statement.
+                </p>
+                <p style="margin-top: 2mm; padding:0 2mm;">
+                    I further certify that the above mentioned R. R. No./Air Consignment No./Postal Receipt No.
+                     <span class='dotted' style="display: inline-block; width: 1.5cm; text-align: center;" >&nbsp;</span> 
+                     dated <span class="dotted" style="display: inline-block; width: 2cm; text-align: center;">&nbsp;</span> has been forwarded to the consignee 
+                     Mentioned in the contract under registered post acknowledgement due on
+                     <span class="dotted" style="display: inline-block; width: 4cm; text-align: center;">&nbsp;</span> vide our letter No
+                     <span class='dotted' style="display: inline-block; width: 3.5cm; text-align: center;" >&nbsp;</span> 
+                     dated
+                     <span class='dotted' style="display: inline-block; width: 1.5cm; text-align: center;" >&nbsp;</span> 
+                </p>
+
+                <p style="margin-top: 5mm; padding:0 2mm;">Dated
+                    <span id="billDate_1"></span>
+                </p>
+                <p style="margin-top: 5mm; text-align: right; padding:0 2mm;">(Signature and seal of the Contractor)</p>
+            </div>
+            <div class="col-3"  style="height: 17cm; text-align: left; padding: 2mm 2mm;">
+                <p>I Certify *</p>
+                <p style="margin-top: 3mm;">
+                    (a) that the stores have been duly delivered and Inspected and found
+                     conformable to patterns and specification and fit for Govt. service and taken on Charges
+                </p>
+                <p style="margin-top: 3mm;">
+                    vide <span class='dotted' style="display: inline-block; width: 3cm; text-align: center;" >&nbsp;</span> 
+                </p>
+                <p style="margin-top: 10mm;">
+                    (b) that the rates passed in this bill (1) agree with those passed in the  <span class='dotted' style="display: inline-block; width: 3cm; text-align: center;" >&nbsp;</span>
+                    and that they have been compared and agree with the original documents recorded in this office , (2) are reasonable.
+                </p>
+                <p style="margin-top: 10mm;">
+                    (c) certified correct according to transport indent register Item No 
+                    <span class='dotted' style="display: inline-block; width: 4cm; text-align: center;" >&nbsp;</span> 
+                    and I.A.F.Z. - 2150 attached 
+                </p>
+                <p style="margin-top: 10mm;">
+                    (d) that no Govt. transport was available                
+                </p>
+
+                <div class="row" style="margin-top: 5mm;">
+                    <div class="col-8" style="box-shadow: none;">
+                        Station
+                    </div>
+                    <div class="col-4" style="box-shadow: none; text-align: right;">
+                        Ranks
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20mm;">
+                    <div class="col-8" style="box-shadow: none;">
+                        Date
+                    </div>
+                    <div class="col-4" style="box-shadow: none; text-align: right;">
+                        Designation
+                    </div>
+                </div>
+
+                <p style="margin-top: 22mm;">
+                    * These certificates are not required in respect of A.S.C. Supplies.
+                </p>
+            </div>
+            <div class="col-2"  style="height: 17cm; text-align: left; padding: 2mm 2mm;">
+                <p style="margin-top: 5mm;">
+                    Received the amount On Rupees ( In words )
+                </p>
+                <p style="margin-top: 5mm; height: 3cm;"><span id="amountToWords"></span> Only!</p>
+                <p style="margin-top: 5mm;">Payment to be made 
+                    To my Bankers M/s/The</p>
+                <p style="margin-top: 2mm;" id="bankName">Bank</p>
+                <p style="margin-top: 2mm;" id="branchName">Branch</p>
+
+                <div class="row" style="margin-top: 5mm;">
+                    <div class="col-12" style="height: 2cm;"></div>
+                </div>
+
+                <p style="margin-top: 3mm; text-align: center;">Signature of Contractor</p>
+
+                <div class="row" style="margin-top: 15mm;">
+                    <div class="col-4" style="box-shadow: none;">
+                        Station
+                    </div>
+                    <div class="col-8" style="box-shadow: none; text-align: right;">
+                        Kolkata-56
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15mm; text-align: center;">
+                    <div class="col-12" style="box-shadow: none;">
+                        Signature of Contractor
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15mm;">
+                    <div class="col-4" style="box-shadow: none;">
+                        Date
+                    </div>
+                    <div class="col-8" style="box-shadow: none; text-align: right;" id='billDate_2'>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a id="save" class="float">
+        <img src="../imgs/save.png" height="24" style="margin-top:18px;">
+    </a>
+    <script src="../currency.js"></script>
+    <script>
+        let saveButton=document.getElementById('save');
+        function init(data){
+            console.log(data);
+            addTopPart(data.order,data.master.billNo);
+            addMiddlePart(data.bills,data.party);
+            addBillMaster(data.master);
+            addBank(data.bankName,data.branchName);
+        }
+        saveButton.addEventListener('click',()=>{
+          window.print();
+        });
+
+        function addTopPart(order,billNumber){
+            document.getElementById('orderNumber').innerText=order.orderNumber;
+            document.getElementById('orderDate').innerText=properDate(order.orderDate);
+            document.getElementById('billNo').innerText=billNumber;
+        }
+        function addMiddlePart(bills,party){
+            let allChalans=new Set();
+            let totalAmount=0;
+            let totalQty=0;
+            let firstBill=bills[0];
+            bills.forEach(element => {
+                allChalans.add(element.chalanOutId);
+                totalAmount+=element.amount;
+                totalQty+=element.qty;
+            });
+            document.getElementById('chalanOutID').innerHTML=Array.from(allChalans).join(',<br>');
+            document.getElementById('partyName').innerText=party.partyName;
+            document.getElementById('partyAddress').innerText=party.partyAddress1;
+            document.getElementById('desc1').innerText=firstBill.desc1;
+            document.getElementById('itemCode').innerText=firstBill.chalanInDetail.itemCode == null?'':firstBill.chalanInDetail.itemCode;
+            document.getElementById('platingType').innerText=firstBill.chalanOutDetail.platingType;
+            document.getElementById('qty').innerText=Number(totalQty).toFixed(2);
+            document.getElementById('qtyInWords').innerText=fprice_in_words(Number(totalQty));
+            document.getElementById('rate').innerText=Number(firstBill.rate).toFixed(2);
+            document.getElementById('amount').innerText=Number(totalAmount).toFixed(2);
+            document.getElementById('partyGST').innerText=party.gstinNo;
+        }
+        function addBillMaster(master){
+            document.getElementById('cgstPer').innerText=master.cgstRate;
+            document.getElementById('sgstPer').innerText=master.cgstRate;
+            document.getElementById('cgstValue').innerText=master.cgstValue;
+            document.getElementById('sgstValue').innerText=master.sgstValue;
+            document.getElementById('totalGST').innerText=master.totalGST;
+            document.getElementById('billValue').innerText=master.billValue;
+            document.getElementById('billRoundOff').innerText=Number(master.billRoundOff).toFixed(2);
+            document.getElementById('amountToWords').innerText=fprice_in_words(Number(master.billRoundOff));
+            document.getElementById('billDate_1').innerText=properDate(master.billDate);
+            document.getElementById('billDate_2').innerText=properDate(master.billDate);
+        }
+        function addBank(bankName,branchName){
+            document.getElementById('bankName').innerText=bankName;
+            document.getElementById('branchName').innerText=branchName;
+        }
+        function properDate(date){
+            if(date != null)
+                return new Date(date).toLocaleDateString('en-GB');
+            return '';
+        }
+        init(JSON.parse(window.localStorage.getItem('printData'))); 
+    </script>
+</body>
+</html>
