@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/grids.css">
+    <style>
+        .fill-in{
+            font-size: 3.5mm;
+            text-align: center;
+        }
+        .fill-in .row{
+            padding-top: 2.5mm;
+        }
+        .solid{
+            border-bottom: .4mm solid black;
+            font-size: 4mm;
+        }
+        .table{
+            font-size: 3mm;
+            text-align: center;        
+        }
+        .table [class*="col-"] {
+            height: 7.5mm;
+            box-shadow: 
+            .25mm 0 0 0 black, 
+            0 .25mm 0 0 black, 
+            .25mm .25mm 0 0 black,   /* Just to fix the corner */
+            .25mm 0 0 0 black inset, 
+            0 .25mm 0 0 black inset;
+        }   
+        *{
+            margin: 0;
+        }
+        .dotted{
+            font-size: 4mm; 
+            border-bottom: .4mm dotted black;
+        }
+        .float{
+            position:fixed;
+            width:60px;
+            height:60px;
+            bottom:40px;
+            right:40px;
+            background-color:#0C9;
+            color:#FFF;
+            border-radius:50px;
+            text-align:center;
+            box-shadow: 2px 2px 3px #999;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media print{
+            #save{
+            display: none;
+            }
+        }
+    </style>
+</head>
+<body class="A4" id='body'>
+    <section class="sheet padding-10mm">
+        <div class="row">
+            <center>
+                <h3 style="font-size: 4mm; margin-top: 4mm;">CONTRACTORS' BILL</h3>
+                <h5 style="font-size: 3mm; margin-top: 4mm;">INSTRUCTIONS</h5>
+            </center>
+
+            <div class="col-12" style="box-shadow: none; margin-top: 2mm; text-align: left; font-size: 3.5mm;">
+                <p><strong>1.</strong> Each bill must refer to only one order/contract or station as the case may be.</p>
+                <p><strong>2.</strong> Bill should prepaired in ink and the original copy recipted and stamped where the amount exceed Rs. 20/- and should be supported by the original copy
+                        (ies) of Inspection  Notes/ Supply Order/IAFS-1520/Transport Indent and Order Form.</p>
+                <p><strong>3.</strong> Seperate bills should be prepared for each month's supply also for supplies made under
+                        contract  and  out of contract  and for  other depots in the case of M.  S.  Depots.</p>
+                <p><strong>4.</strong> Bllls or supplies made under A. S. C. contracts should be submitted 
+                    direct to the C. D. A.  In all other cases the bills should be submitted through the Officer 
+                    issuing th supply orders or Transport Indent, etc. In the latter cases extra copies of bill 
+                    should be prepared and submitted along with  the original where required .</p>
+                <p><strong>5.</strong> The Instructions contained in the pamphlet,   " Instructions for the guidance of A. S. C. 
+                        Contractors in the preparation of their bills for supplies-1935"  should in general , be followed in the 
+                        preparation of bills.</p>
+            </div>        
+        </div>
+        <hr class="solid" style="width: 120%; margin-left: -10mm; margin-top: 4mm;">
+        <center><h5 style="font-size: 3mm; margin-top: 4mm; text-decoration: underline;">For use in the Defence Accounts Department</h5></center>
+        <div class="col-12" style="box-shadow: none; margin-top: 2mm; text-align: left; font-size: 3.5mm;">
+            <p><span style="display: inline-block; width: 45%;"><strong>1.</strong> Register of payments to Local Purchase Contractors, etc.</span>
+                <span style="display: inline-block; width: 53%;" class="solid"> &nbsp;</span>
+            </p>
+            <p style="margin-top: 2mm;">
+                <span style="display: inline-block; width: 7%;">District</span>
+                <span style="display: inline-block; width: 30%;" class="solid"> &nbsp;</span>
+                <span style="display: inline-block; width: 10%; text-align: center;">Page No.</span>
+                <span style="display: inline-block; width: 50%;" class="solid"> &nbsp;</span>
+            </p>
+            <p style="margin-top: 2mm;">
+                <span style="display: inline-block; width: 15%;"><strong>2.</strong> Bill  Register no.</span>
+                <span style="display: inline-block; width: 83%;" class="solid"> &nbsp;</span>
+            </p>
+            <p style="margin-top: 2mm;">
+                <span style="display: inline-block; width: 20%;"><strong>3.</strong> Number of enclosures</span>
+                <span style="display: inline-block; width: 78%;" class="solid"> &nbsp;</span>
+            </p>
+            <p style="margin-top: 2mm;">
+                <span style="display: inline-block; width: 25%;"><strong>4.</strong> Rate and distance verified by</span>
+                <span style="display: inline-block; width: 73%;" class="solid"> &nbsp;</span>
+            </p>
+            <p style="margin-top: 2mm;">
+                <span style="display: inline-block; width: 30%;"><strong>5.</strong> Retrenchments/outstanding demands</span>
+                <span style="display: inline-block; width: 68%;" class="solid"> &nbsp;</span>
+            </p>
+            <p style="margin-top: 5mm;">
+                <span style="display: inline-block; width: 13%;">Passed for (Rs.</span>
+                <span style="display: inline-block; width: 28%;" class="solid"> &nbsp;</span>
+                <span style="display: inline-block; width: 3%; text-align: center;">P.</span>
+                <span style="display: inline-block; width: 14%; text-align: right;" class="solid">&nbsp;</span>)
+                <span style="display: inline-block; width: 8%; text-align: right;">Rupees</span>
+                <span style="display: inline-block; width: 30%;" class="solid"> &nbsp;</span>
+            </p>
+            <p>
+                <span style="display: inline-block; width: 20%;">for payment as  under</span>
+                <span style="display: inline-block; width: 50%;"> &nbsp;</span>
+                <span style="display: inline-block; width: 28%; text-align: center;">in words</span>
+            </p>
+            <p style="margin-top: 3mm;">
+                <span style="display: inline-block; width: 12%;">Voucher No.</span>
+                <span style="display: inline-block; width: 86%;" class="solid"> &nbsp;</span>
+            </p>
+        </div>
+
+        <div class="row table" >
+            <div class="col-1Half" style="margin-top: 2mm; height: 1.5cm; padding: 3mm;">
+               A.  G ' s Code no.
+            </div>
+            <div class="col-1" style="margin-top: 2mm; height: 1.5cm; text-align: center; padding: 3mm;">
+                Treasury
+            </div>
+            <div class="col-1" style="margin-top: 2mm; height: 1.5cm; text-align: center; padding: 3mm;">
+                Name of Payee
+            </div>
+            <div class="col-2" style="margin-top: 2mm; height: 1.5cm; text-align: center; padding: 3mm;">
+                Account of Cheque
+            </div>
+            <div class="col-1Half" style="margin-top: 2mm; height: 1.5cm; text-align: center; padding: 3mm;">
+                Date of Cheque
+            </div>
+            <div class="col-2Half" style="margin-top: 2mm; height: 1.5cm; text-align: center; padding: 3mm;">
+                Initials of Supdt. "D" sec.
+            </div>
+            <div class="col-2Half" style="margin-top: 2mm; height: 1.5cm; text-align: center; padding: 3mm;">
+                Initials of O.I/C. "D" Sec
+            </div>
+        </div>
+        <div class="row table" >
+            <div class="col-1Half" style=" height: 6cm; padding: 3mm;">
+            </div>
+            <div class="col-1" style=" height: 6cm; text-align: center; padding: 3mm;">
+            </div>
+            <div class="col-1" style=" height: 6cm; text-align: center; padding: 3mm;">
+            </div>
+            <div class="col-2" style=" height: 6cm; text-align: center; padding: 3mm;">
+            </div>
+            <div class="col-1Half" style=" height: 6cm; text-align: center; padding: 3mm;">
+            </div>
+            <div class="col-2Half" style=" height: 6cm; text-align: center; padding: 3mm ;">
+            </div>
+            <div class="col-2Half" style=" height: 6cm; text-align: center; padding: 3mm;">
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 7mm; text-align: center;">
+            <div class="col-2" style="box-shadow: none;">
+                Auditor
+            </div>
+            <div class="col-2" style="box-shadow: none;">&nbsp;</div>
+            <div class="col-2" style="box-shadow: none;">
+                Superintendent
+            </div>
+            <div class="col-2" style="box-shadow: none;">&nbsp;</div>
+            <div class="col-4" style="box-shadow: none; border-bottom: .4mm solid black;">
+                A.O.
+            </div>
+        </div>
+        <div class="row" style="margin-top: 7mm; text-align: center;">
+            <div class="col-8" style="box-shadow: none;">&nbsp;</div>
+            <div class="col-4" style="box-shadow: none; border-bottom: .4mm solid black;">
+                A. C. D. A.
+            </div>
+        </div>
+        <div class="row" style="margin-top: 7mm; text-align: center;">
+            <div class="col-8" style="box-shadow: none;">&nbsp;</div>
+            <div class="col-4" style="box-shadow: none; border-bottom: .4mm solid black;">
+                D. C. D. A.
+            </div>
+        </div>
+        <div class="row" style="margin-top: 7mm; text-align: center;">
+            <div class="col-2" style="box-shadow: none;">
+                Dated
+            </div>
+            <div class="col-2" style="box-shadow: none;">&nbsp;</div>
+            <div class="col-2" style="box-shadow: none;">
+                Dated
+            </div>
+            <div class="col-2" style="box-shadow: none;">&nbsp;</div>
+            <div class="col-2" style="box-shadow: none;">
+                Dated
+            </div>
+            <div class="col-2" style="box-shadow: none;">&nbsp;</div>
+        </div>
+    </section>
+
+    <a id="save" class="float">
+        <img src="../imgs/save.png" height="24" style="margin-top:18px;">
+    </a>
+    <script>
+        let saveButton=document.getElementById('save');
+
+        saveButton.addEventListener('click',()=>{
+          window.print();
+        });
+    </script>
+</body>
+</html>

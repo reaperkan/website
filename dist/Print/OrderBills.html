@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/grids.css">
+    <style>
+      .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#0C9;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      @media print{
+        #save{
+          display: none;
+        }
+      }
+      table{
+        border-collapse: collapse;
+      }
+      table, th, td {
+        border: 1px solid black;
+        text-align: center;
+      }
+      th,td{
+        padding: 2.5mm;
+      }
+    </style>
+</head>
+    <body class="A4" >        
+      <section class="sheet padding-10mm" id='body'>
+        <h1>Party Name: <span id="partyName"></span> </h1>
+        <h4>Order Number: <span id="orderNumber"></span> <span style="margin-left: 5mm;">Order Date: </span> <span id="orderDate"></span> </h4>
+            <table id='table_1'>
+                <tr>
+                  <th>Bill No.</th>
+                  <th>Bill Date</th>
+                  <th>CGST Rate</th>
+                  <th>CGST Value</th>
+                  <th>SGST Rate</th>
+                  <th>SGST Value</th>
+                  <th>Total GST</th>
+                  <th>Bill Value</th>
+                  <th>Bill Round Off</th>
+                </tr>
+              </table>
+
+      </section>  
+      <a id="save" class="float">
+        <img src="../imgs/save.png" height="24" style="margin-top:18px;">
+      </a>  
+      <script>
+          let saveButton=document.getElementById('save');
+          let limit=15;
+          let page=1;
+          let table=document.getElementById('table_'+page);
+          let tableClone=document.getElementById('body').cloneNode(true);
+          tableClone.children[0].remove();
+          tableClone.children[0].remove();
+
+
+          saveButton.addEventListener('click',()=>{
+            window.print();
+          });
+          function init(data){
+              topInfos(data.partyName.partyName,data.order.orderNumber,data.order.orderDate);
+              tableInput(data.bills);
+          }
+
+          function topInfos(partyName,orderNumber,orderDate){
+            document.getElementById('partyName').innerText=addText(partyName);
+            document.getElementById('orderNumber').innerText=addText(orderNumber);
+            document.getElementById('orderDate').innerText=addText(properDate(orderDate));
+          }
+          function tableInput(bills){
+            let i=0;
+            while(i < bills.length){
+              if( i > limit)
+                addNewPage();
+              table.appendChild(addTableRow(bills[i]));
+              i+=1;
+            }
+          }
+          function addTableRow(billMaster){
+            let row=document.createElement('tr');
+            row.innerHTML+=addTableData(billMaster.billNo);
+            row.innerHTML+=addTableData(properDate(billMaster.billDate));
+            row.innerHTML+=addTableData(properDecimal(billMaster.cgstRate));
+            row.innerHTML+=addTableData(properDecimal(billMaster.cgstValue));
+            row.innerHTML+=addTableData(properDecimal(billMaster.sgstRate));
+            row.innerHTML+=addTableData(properDecimal(billMaster.sgstValue));
+            row.innerHTML+=addTableData(properDecimal(billMaster.totalGST));
+            row.innerHTML+=addTableData(properDecimal(billMaster.billValue));
+            row.innerHTML+=addTableData(properDecimal(billMaster.billRoundOff));
+            return row;
+          }
+          function addTableData(data){
+            return '<td>'+addText(data)+'</td>';
+          }
+          function properDecimal(num){
+            return Number(num).toFixed(2);
+          }
+          function properDate(date){
+              if(date != null)
+                  return new Date(date).toLocaleDateString('en-GB');
+              return null;
+          }
+          function addText(data){
+            return (data==null || data.length==0)?"&nbsp;":data;
+          }
+          function addNewPage(){
+            limit+=20;
+            page+=1;
+            tableClone.children[0].id='table_'+page;
+            tableClone.id='page_'+page;
+            document.body.appendChild(tableClone);
+            table=document.getElementById('table_'+page);
+            tableClone=document.getElementById('page_'+page).cloneNode(true);
+          }
+          init(JSON.parse(window.localStorage.getItem('printData')));
+      </script>  
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/grids.css">
+    <style>
+      p{
+        font-weight: 600;
+      }
+      *{
+        margin: 0;
+      }
+      .firstPage{
+        height: 137mm;
+      }
+      .secondPage{
+        height: 240mm;
+      }
+      .content{
+        margin-top: 2mm;
+        margin-left: 2mm;
+        height: 20mm;
+        /* font-weight: lighter; */
+        text-align: left;
+        font-size: small;
+        font-weight: 400;
+      }
+      .content p{
+        text-align: left;
+        font-size: small;
+        font-weight: 400;
+      } 
+      .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#0C9;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      @media print{
+        #save{
+          display: none;
+        }
+      }
+    </style>
+</head>
+    <body class="A4" id='body'>        
+      <section class="sheet padding-10mm">
+        <div class="row">
+          <div class="col-12">
+            <center><p>Original For Recipient/Duplicate For Transporter/Triplicate/Extra Copy</p></center>
+            <h1 style="padding-left: 10mm; margin: 5mm 0;">G.D. Electroplating Works</h1>
+            <div class="row">
+              <div class="col-6" style="text-align: justify; box-shadow: none; padding-left: 10mm;">
+                <p>78, Bee Hive Garden, Kolkata-700056.</p>
+                <p>Phone : 2553 4315 , 2564 0085.</p>
+                <p>Fax : (033) 2564 2346</p>
+                <p>E-Mail : gelecrks@dataone.in</p>
+              </div>
+              <div class="col-6" style="text-align: justify; box-shadow: none; padding-left: 10mm;">
+                <p>GSTIN No. : 19AADFG7040FIZK</p>
+                <p>PAN No. : AADFG7040F</p>
+                <p>SAC Code : 998898</p>
+                <p>&nbsp;</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <center><h3 style="margin: 1mm 0;">TAX INVOICE</h3></center>
+
+        <div class="row">
+          <div class="col-6" style="height: 27mm; padding-left: 2mm; font-size: small;">
+            <h3 style="display: inline; vertical-align: top;">BUYER (Bill To): </h3>
+            
+            <p style="font-weight: lighter;"><span id="bADD1"></span></p>
+            <p style="font-weight: lighter;"><span id="bTo"></span></p>
+            <p style="font-weight: lighter;"><span id="bADD2"></span></p>
+            <p style="font-weight: lighter;"><span id="bADD3"></span></p>
+            <p style="font-weight: lighter;">GSTIN: <span id="bGST"></p>
+          </div>
+
+          <div class="col-6" style="height: 27mm; padding-left: 2mm; font-size: small;">
+            <h3 style="display: inline; vertical-align: top;">CONSIGNEE (Ship To): </h3>
+            
+            <p style="font-weight: lighter;"><span id="pADD1"></span></p>
+            <p style="font-weight: lighter;"><span id="pTo"></span></p>
+            <p style="font-weight: lighter;"><span id="pADD2"></span></p>
+            <p style="font-weight: lighter;"><span id="pADD3"></span></p>
+          </div>
+        </div>
+         
+        <div class="row">
+          <div class="col-6" style="height: 30mm; padding-left: 2mm;">
+            <p>Challan No. : <span id="outID" class="content"></span></p>
+            <p style="word-break: break-all;">Date :  <span id="outDate" class="content"></span></p>
+          </div>
+
+          <div class="col-6" style="text-align: justify; height: 30mm; padding-left: 2mm;">
+            <p>Invoice No. : <span id="billNumber" style="font-weight: lighter;"></span></p>
+            <p>Date : <span id="billDate" style="font-weight: lighter;"></span></p>
+            
+            <p>S.O. No. : <span id="orderNumber" style="font-weight: lighter;"></span></p>
+            <p>Date : <span id="orderDate" style="font-weight: lighter;"></span></p>
+          </div>
+        </div>
+
+        <div id="Table_1">
+
+        <div class="row">
+          <div class="col-2"><p style="text-align: center; padding: 1mm 0;">Plating</p></div>
+          <div class="col-5"><p style="text-align: center; padding: 1mm 0;">Description And Code No.</p></div>
+          <div class="col-1"><p style="text-align: center; padding: 1mm 0;">Unit</p></div>
+          <div class="col-1Half"><p style="text-align: center; padding: 1mm 0;">Quantity</p></div>
+          <div class="col-1"><p style="text-align: center; padding: 1mm 0;">Rate</p></div>
+          <div class="col-1Half"><p style="text-align: center; padding: 1mm 0;">Amount</p></div>
+        </div>
+
+        <div class="row">
+          <div class="col-2 firstPage">
+            
+          </div>
+
+          <div class="col-5 firstPage">
+            <div id="TotalValues" class="row" style="position: relative; top: 117mm; text-align: right; padding-right: 5mm;">
+                <p><strong>GROSS AMOUNT</strong></p>
+                <p>Add CGST @ <span id="cgstPer"></span>%</p>
+                <p>Add SGST @ <span id="sgstPer"></span>%</p>
+                <p>Round Off <span id='typeR'></span> </p>
+            </div>
+          </div>
+
+          <div class="col-1 firstPage">
+            
+          </div>
+
+          <div class="col-1Half firstPage">
+      
+          </div>
+
+          <div class="col-1 firstPage">
+            
+          </div>
+
+          <div class="col-1Half firstPage">
+            <div id="totalBoxGST" class="row" style="padding-right: 2mm; text-align: right;">
+                <p id="billValue">TotalAmount</p>
+                <p id="cgstValue">CGST</p>
+                <p id="sgstValue">SGST</span></p>
+                <p id="billRoundOff">Round Off</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-1" style="box-shadow: none; margin-left: 1mm;"><p>Rupees: </p></div>
+              <div class="col-7" style="box-shadow: none;" ><span id="amountWords"></span> Only</div>
+              <div class="col-1Half" style="box-shadow: none;"><p>Total Value</p></div>
+              <div class="col-2" style="text-align: right;box-shadow: none; margin-left: 5mm;"><p id="totalValue"></p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="height: 20mm;">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-8" style="box-shadow: none;">&nbsp;</div>
+              <div class="col-4" style="box-shadow: none; text-align: center;">
+                <p>For E & O.E.</p>
+                <p style="margin-top: 8mm;">For <strong>G.D. Electroplating Works</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer style="text-align: center;"></footer>
+      </div>
+      </section>  
+      <a id="save" class="float">
+        <img src="../imgs/save.png" height="24" style="margin-top:18px;">
+      </a> 
+    <script src="../currency.js"></script>   
+    <script>
+        let totalValues=document.getElementById('TotalValues').cloneNode(true);
+        let totalGST=document.getElementById('totalBoxGST').cloneNode(true);
+        document.getElementById('TotalValues').remove();
+        document.getElementById('totalBoxGST').remove();
+        let table=document.getElementById('Table_1');
+        let tableClone=table.cloneNode(true);
+        let pageNo=1;
+        let limit=0;
+        let length=0;
+        let saveButton=document.getElementById('save');
+        let dates=[];
+        let chalanOutIDs=new Set();
+
+        function init(data){
+          console.log(data);
+          addPartyCreds(data.partyMaster);
+          addBuyerCreds(data.buyerMaster);
+          addRowToTable(sanitiseData(data.bills));
+          caculateOffset();
+          caculateOffset_2();
+          billMaster(data.master,data.order);
+        }
+        saveButton.addEventListener('click',()=>{
+          window.print();
+        });
+        function billMaster(master,order){
+          let diff=Number(master.billRoundOff)-Number(master.billValue);
+          if(diff>0)
+            document.getElementById('typeR').innerText='More';
+          else if(diff<0)
+            document.getElementById('typeR').innerText='Less';
+          addText('cgstPer',Number(master.cgstRate).toFixed(2));
+          addText('sgstPer',Number(master.sgstRate).toFixed(2));
+          addText('cgstValue',Number(master.cgstValue).toFixed(2));
+          addText('sgstValue',Number(master.sgstValue).toFixed(2));
+          addText('billValue',Number(master.billValue - master.totalGST).toFixed(2));
+          addText('billRoundOff',Number(diff).toFixed(2));
+          addText('amountWords',fprice_in_words(Number(master.billRoundOff)));
+          addText('totalValue',Number(master.billRoundOff).toFixed(2));
+          addText('billNumber',master.billNo);
+          addText('billDate',properDate(master.billDate));
+          addText('orderNumber',order.orderNumber);
+          addText('orderDate',properDate(order.orderDate));
+        }
+        function sanitiseData(bills){
+          let mappedData=[];
+          let objHolder=[];
+          bills.forEach(element => {
+            if(!chalanOutIDs.has(element.chalanOutId)){
+              chalanOutIDs.add(element.chalanOutId);
+              dates.push(properDate(element.chalanOutDate));
+            }
+            let index=mappedData.indexOf(element.desc1);
+            if(index >= 0){
+                objHolder[index].qty+=element.qty;
+                objHolder[index].amount+=element.amount;
+            }else{
+              mappedData.push(element.desc1);
+              objHolder.push(element);
+            }            
+          })
+          length=objHolder.length;
+          return objHolder;
+        }
+        function addRowToTable(bills){
+          checkLimit();
+          for(let i=1;i<=length;i++){
+            let bill=bills[i-1];
+            addPlating(bill.chalanOutDetail.platingType);
+            addDescription(bill.desc1);
+            addUnit(bill.unit);
+            addQuantity(bill.qty);
+            addRate(bill.rate);
+            addAmount(bill.amount);
+            if(i==limit && limit<length)
+              addNewPage();
+          }
+          addText('outID',Array.from(chalanOutIDs).join(','));
+          addText('outDate',Array.from(dates).join(','));
+        }
+        function addBuyerCreds(buyerInfo){
+          addText('bTo',buyerInfo.partyName);
+          addText('bGST',buyerInfo.gstinNo);
+          addText('bADD1',buyerInfo.addressee);
+          addText('bADD2',buyerInfo.partyAddress1);
+          addText('bADD3',buyerInfo.partyAddress2);
+        }
+        function addPartyCreds(partyInfo){
+          addText('pTo',partyInfo.partyName);
+          //addText('pGST',partyInfo.gstinNo);
+          addText('pADD1',partyInfo.addressee);
+          addText('pADD2',partyInfo.partyAddress1);
+          addText('pADD3',partyInfo.partyAddress2);
+        }
+        function properDate(date){
+            if(date != null)
+                return new Date(date).toLocaleDateString('en-GB');
+            return '';
+        }
+        function addParaToDiv(div,paraContent){
+          if(paraContent != null)
+            div.innerHTML+=createPara(paraContent);
+        }
+        function createPara(paraContent){
+          return '<p>'+paraContent+'</p>'
+        }
+        function addText(id,obj){
+          if(obj != null)
+            document.getElementById(id).innerText=obj;
+        }
+        function addPlating(plating){
+          let data=(plating == null || plating.length == 0)?'&nbsp;':plating;
+          let newData="<p class='content'>"+data+"</p>"
+          table.children[1].children[0].innerHTML+=newData;
+        }
+        function addDescription(desc1){
+          let data=(desc1 == null || desc1.length == 0)?'&nbsp;':desc1;
+          let div=document.createElement('div');
+          div.classList.add('content');
+          addParaToDiv(div,data);
+          table.children[1].children[1].appendChild(div);
+        }
+        function addUnit(unit){
+          let data=(unit == null || unit.length == 0)?'&nbsp;':unit;
+          let newData="<p class='content'>"+data+"</p>"
+          table.children[1].children[2].innerHTML+=newData;
+        }
+        function addQuantity(qty){
+          let data=(qty == null || qty.length == 0)?'&nbsp;':Number(qty).toFixed(3);
+          let newData="<p class='content'>"+data+"</p>"
+          table.children[1].children[3].innerHTML+=newData;
+        }
+        function addRate(rate){
+          let data=(rate == null || rate.length == 0)?'&nbsp;':Number(rate).toFixed(2);
+          let newData="<p class='content'>"+data+"</p>"
+          table.children[1].children[4].innerHTML+=newData;
+        }
+        function addAmount(amount){
+          let data=(amount == null || amount.length == 0)?'&nbsp;':Number(amount).toFixed(2);
+          let newData="<p class='content'>"+data+"</p>"
+          table.children[1].children[5].innerHTML+=newData;
+        }
+        function addNewPage(){
+          table.children[2].firstElementChild.innerHTML='&nbsp;'
+          if(pageNo==1)
+            table.children[4].innerText=pageNo;
+          pageNo++;
+          checkLimit();
+          tableClone.id='Table_'+pageNo;
+          let newPg=document.createElement('section');
+          newPg.classList.add('sheet')
+          newPg.classList.add('padding-10mm');
+          newPg.append(tableClone);
+          document.body.append(newPg);
+          tableClone=document.getElementById('Table_'+pageNo).cloneNode(true);
+          let newTb=[...document.getElementById('Table_'+pageNo).children[1].children];
+          newTb.forEach(element => {
+            element.classList.remove('firstPage');
+            element.classList.add('secondPage');
+          });
+          table=document.getElementById('Table_'+pageNo);
+          table.children[4].innerText=pageNo;
+        }
+        function checkLimit(){
+          let pageLimit = pageNo==1?5:10;
+          if(length <= limit+pageLimit)
+            limit+=pageLimit
+          else
+            if(length == limit + pageLimit + 1)
+              limit+=pageLimit
+            else
+              limit+=pageLimit+1;
+            console.log(limit);
+        }
+        function caculateOffset(){
+          totalValues.style.position='relative';
+          totalValues.style.top=(((limit-length)*22)+((pageNo==1)?5:0)).toString()+'mm';
+          table.children[1].children[1].appendChild(totalValues);
+        } 
+        function caculateOffset_2(){
+          totalGST.style.position='relative';
+          totalGST.style.top=(((limit-length)*22)+((pageNo==1)?5:0)).toString()+'mm';
+          table.children[1].children[5].appendChild(totalGST);
+        }    
+        init(JSON.parse(window.localStorage.getItem('printData'))); 
+    </script>
+</body>
+</html>
